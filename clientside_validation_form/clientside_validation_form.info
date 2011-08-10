@@ -1,7 +1,7 @@
 ; $Id: 
 name = Clientside Validation Form
 description = Add client side validation to regular forms
-core = 7.x
+core = 8.x
 package = Clientside Validation
 
 files[] = clientside_validation_form.module
