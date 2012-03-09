@@ -6,4 +6,3 @@ package = Clientside Validation
 
 files[] = clientside_validation_html5.module
 dependencies[] = clientside_validation
-
