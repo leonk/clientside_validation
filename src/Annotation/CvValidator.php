@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Contains \Drupal\clientside_validation\Annotation\CvValidator.
+ */
+
+namespace Drupal\clientside_validation\Annotation;
+
+use Drupal\Component\Annotation\Plugin;
+
+/**
+ * Defines a clientside validation validator.
+ *
+ * Plugin Namespace: Plugin\clientside_validation\CvValidator
+ *
+ * @see \Drupal\clientside_validation\ValidatorManager
+ * @see plugin_api
+ *
+ * @Annotation
+ */
+class CvValidator extends Plugin {
+
+  /**
+   * The plugin ID.
+   *
+   * @var string
+   */
+  public $id;
+
+  /**
+   * The name of the validator.
+   *
+   * @var \Drupal\Core\Annotation\Translation
+   *
+   * @ingroup plugin_translatable
+   */
+  public $name;
+}
