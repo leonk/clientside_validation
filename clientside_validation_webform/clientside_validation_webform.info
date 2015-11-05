@@ -1,9 +1,0 @@
-; $Id: 
-name = Clientside Validation Webform
-description = Add client side validation to Webforms
-core = 8.x
-package = Clientside Validation
-
-files[] = clientside_validation_webform.module
-dependencies[] = clientside_validation
-dependencies[] = webform

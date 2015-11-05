@@ -1,9 +1,0 @@
-; $Id: 
-name = Clientside Validation FAPI
-description = Add client side validation support for <a href="http://www.drupal.org/project/fapi_validation">FAPI Validation</a>
-core = 8.x
-package = Clientside Validation
-
-files[] = clientside_validation_fapi.module
-dependencies[] = clientside_validation
-dependencies[] = fapi_validation
