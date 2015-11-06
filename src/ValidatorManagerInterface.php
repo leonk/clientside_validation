@@ -18,7 +18,9 @@ interface ValidatorManagerInterface extends PluginManagerInterface, CachedDiscov
    *
    * @param array $element
    *   The form element to get the validators for.
+   * @param FormStateInterface $form_state
+   *   The form state of the form this element belongs to.
    */
-  public function getValidators($element, FormStateInterface $form_state);
+  public function getValidators(array $element, FormStateInterface $form_state);
 
 }

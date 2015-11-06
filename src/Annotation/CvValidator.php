@@ -35,4 +35,18 @@ class CvValidator extends Plugin {
    * @ingroup plugin_translatable
    */
   public $name;
+
+  /**
+   * An array with keys 'types' and 'attributes'.
+   *
+   * Each value is an array of types and attributes (respectively) this plugin
+   * supports.
+   *
+   * @var array
+   */
+  public $supports = [
+    'types' => [],
+    'attributes' => [],
+  ];
+
 }

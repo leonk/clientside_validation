@@ -14,7 +14,10 @@ use Drupal\Core\Form\FormStateInterface;
  *
  * @CvValidator(
  *   id = "required",
- *   name = @Translation("Required")
+ *   name = @Translation("Required"),
+ *   supports = {
+ *     "attributes" = {"required"}
+ *   }
  * )
  */
 class Required extends CvValidatorBase {
@@ -22,14 +25,9 @@ class Required extends CvValidatorBase {
   /**
    * {@inheritdoc}
    */
-  public function supports(array $element, FormStateInterface $form_state) {
-    return isset($element['#required']) && $element['#required'];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   protected function getRules($element, FormStateInterface $form_state) {
+    // Drupal already adds the required attribute, so we don't need to set the
+    // required rule.
     return [
       'messages' => [
         'required' => t('@title is required.', ['@title' => $element['#title']]),

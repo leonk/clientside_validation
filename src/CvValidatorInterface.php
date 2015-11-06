@@ -32,17 +32,4 @@ interface CvValidatorInterface extends PluginInspectionInterface {
    */
   public function getName();
 
-  /**
-   * Check whether or not this validator supports the given form element.
-   *
-   * @param array $element
-   *   The form element to check.
-   * @param FormStateInterface $form_state
-   *   The form state of the form this element belongs to.
-   *
-   * @return bool
-   *   TRUE if this validator supports this element, FALSE otherwise.
-   */
-  public function supports(array $element, FormStateInterface $form_state);
-
 }

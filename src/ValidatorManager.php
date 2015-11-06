@@ -37,18 +37,41 @@ class ValidatorManager extends DefaultPluginManager implements ValidatorManagerI
   /**
    * {@inheritdoc}
    */
-  public function getValidators($element, FormStateInterface $form_state) {
-    // TODO: Investigate how ContextAware plugins or plugin mappers work and
-    // whether we can use them for this?
-    $validator_instances = array();
-    $validators = $this->getDefinitions();
+  public function getValidators(array $element, FormStateInterface $form_state) {
+    $instances = [];
+    $validators = $this->getDefinitionsForElement($element, $form_state);
     foreach ($validators as $validator) {
-      $instance = $this->createInstance($validator['id']);
-      if ($instance->supports($element, $form_state)) {
-        $validator_instances[] = $instance;
-      }
+      $instances[] = $this->createInstance($validator['id']);
+
     }
-    return $validator_instances;
+    return $instances;
   }
 
+  /**
+   * Get plugin definitions that apply to a form element.
+   *
+   * @param array $element
+   *   The form element to get the validators for.
+   * @param FormStateInterface $form_state
+   *   The form state of the form this element belongs to.
+   *
+   * @return array
+   *   The plugin definitions that support this element.
+   */
+  protected function getDefinitionsForElement(array $element, FormStateInterface $form_state) {
+    $validators = $this->getDefinitions();
+    $element_validators = [];
+    foreach ($validators as $validator) {
+      if (in_array($element['#type'], $validator['supports']['types'])) {
+        $element_validators[$validator['id']] = $validator;
+      }
+      foreach ($validator['supports']['attributes'] as $attribute) {
+        if (isset($element['#' . $attribute]) || isset($element['#attributes'][$attribute])) {
+          $element_validators[$validator['id']] = $validator;
+          continue;
+        }
+      }
+    }
+    return $element_validators;
+  }
 }
