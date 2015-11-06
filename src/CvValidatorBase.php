@@ -39,12 +39,12 @@ abstract class CvValidatorBase extends PluginBase implements CvValidatorInterfac
     $rules = $this->getRules($element, $form_state);
     if (isset($rules['rules'])) {
       foreach ($rules['rules'] as $rulename => $rulearg) {
-        $element['#attributes']['data-rule' . Unicode::ucfirst(Unicode::strtolower($rulename))] = is_object($rulearg) || is_array($rulearg) ? Json::encode($rulearg) : $rulearg;
+        $element['#attributes']['data-rule-' . Unicode::strtolower($rulename)] = is_object($rulearg) || is_array($rulearg) ? Json::encode($rulearg) : $rulearg;
       }
     }
     if (isset($rules['messages'])) {
       foreach ($rules['messages'] as $rulename => $message) {
-        $element['#attributes']['data-msg' . Unicode::ucfirst(Unicode::strtolower($rulename))] = $message;
+        $element['#attributes']['data-msg-' . Unicode::strtolower($rulename)] = $message;
       }
     }
   }
