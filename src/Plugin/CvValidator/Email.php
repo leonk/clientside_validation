@@ -17,7 +17,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   name = @Translation("Email"),
  *   supports = {
  *     "types" = {
- *       "email
+ *       "email"
  *     }
  *   }
  * )
