@@ -30,13 +30,13 @@ class Step extends CvValidatorBase {
       if (isset($element['#min'])) {
         return [
           'messages' => [
-            'step' => t('The value in @title has to be greater than @min by steps of @step.', ['@title' => $element['#title'], '@step' => $element['#step'], '@min' => $element['#min']]),
+            'step' => $this->t('The value in @title has to be greater than @min by steps of @step.', ['@title' => $element['#title'], '@step' => $element['#step'], '@min' => $element['#min']]),
           ],
         ];
       }
       return [
         'messages' => [
-          'step' => t('The value in @title has to be divisible by @step.', ['@title' => $element['#title'], '@step' => $element['#step']]),
+          'step' => $this->t('The value in @title has to be divisible by @step.', ['@title' => $element['#title'], '@step' => $element['#step']]),
         ],
       ];
     }

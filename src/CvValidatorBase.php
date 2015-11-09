@@ -10,8 +10,10 @@ use Drupal\Component\Plugin\PluginBase;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 abstract class CvValidatorBase extends PluginBase implements CvValidatorInterface {
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}

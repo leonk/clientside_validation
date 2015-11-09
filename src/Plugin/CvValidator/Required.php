@@ -31,7 +31,7 @@ class Required extends CvValidatorBase {
     if ($element['#required']) {
       return [
         'messages' => [
-          'required' => t('@title is required.', ['@title' => $element['#title']]),
+          'required' => $this->t('@title is required.', ['@title' => $element['#title']]),
         ],
       ];
     }

@@ -52,7 +52,7 @@ function clientside_validation_form_after_build_recurse($form_id, &$form, &$form
  * Add clientside validation to a form element.
  */
 function clientside_validation_add_validation(&$element, FormStateInterface &$form_state, $form_id) {
-  if (clientside_validation_should_validate($element)) {
+  if (clientside_validation_should_validate($element, $form_state, $form_id)) {
     $validators = \Drupal::service('plugin.manager.clientside_validation.validators')->getValidators($element, $form_state);
     foreach ($validators as $validator) {
       $validator->addValidation($element, $form_state);

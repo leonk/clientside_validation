@@ -30,7 +30,7 @@ class Max extends CvValidatorBase {
     // rule.
     return [
       'messages' => [
-        'max' => t('The value in @title has to be greater than @max.', ['@title' => $element['#title'], '@max' => $element['#max']]),
+        'max' => $this->t('The value in @title has to be greater than @max.', ['@title' => $element['#title'], '@max' => $element['#max']]),
       ],
     ];
   }

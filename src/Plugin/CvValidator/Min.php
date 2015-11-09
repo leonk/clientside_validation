@@ -30,7 +30,7 @@ class Min extends CvValidatorBase {
     // rule.
     return [
       'messages' => [
-        'min' => t('The value in @title has to be greater than @min.', ['@title' => $element['#title'], '@min' => $element['#min']]),
+        'min' => $this->t('The value in @title has to be greater than @min.', ['@title' => $element['#title'], '@min' => $element['#min']]),
       ],
     ];
   }
