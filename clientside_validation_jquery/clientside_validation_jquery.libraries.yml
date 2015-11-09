@@ -1,10 +1,15 @@
 jquery.validate:
   js:
-    js/jquery.validate.js: {}
-    js/jquery.validate.min.js: { minified: true }
+    js/lib/jquery.validate.js: {}
   dependencies:
     - core/jquery
 jquery.validate.additional:
   js:
-    js/additional-methods.js: {}
-    js/additional-methods.min.js: { minified: true }
+    js/lib/additional-methods.js: {}
+  dependencies:
+    - clientside_validation/jquery.validate
+cv.jquery.validate:
+  js:
+    js/cv.jquery.validate.js: {}
+  dependencies:
+    - clientside_validation/jquery.validate
