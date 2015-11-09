@@ -26,8 +26,8 @@ class Max extends CvValidatorBase {
    * {@inheritdoc}
    */
   protected function getRules($element, FormStateInterface $form_state) {
-    // Drupal already adds the required attribute, so we don't need to set the
-    // required rule.
+    // Drupal already adds the max attribute, so we don't need to set the max
+    // rule.
     if (isset($element['#max'])) {
       return [
         'messages' => [

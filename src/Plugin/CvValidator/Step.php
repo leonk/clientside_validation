@@ -26,8 +26,8 @@ class Min extends CvValidatorBase {
    * {@inheritdoc}
    */
   protected function getRules($element, FormStateInterface $form_state) {
-    // Drupal already adds the min attribute, so we don't need to set the min
-    // rule.
+    // Drupal already adds the required attribute, so we don't need to set the
+    // required rule.
     if (isset($element['#min'])) {
       return [
         'messages' => [

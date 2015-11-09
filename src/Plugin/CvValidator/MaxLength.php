@@ -26,8 +26,8 @@ class MaxLength extends CvValidatorBase {
    * {@inheritdoc}
    */
   protected function getRules($element, FormStateInterface $form_state) {
-    // Drupal already adds the required attribute, so we don't need to set the
-    // required rule.
+    // Drupal already adds the maxlength attribute, so we don't need to set the
+    // maxlength rule.
     if (isset($element['#maxlength'])) {
       if ($element['#type'] == 'select') {
         return [
