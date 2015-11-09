@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains \Drupal\clientside_validation\Plugin\CvValidator\Min.
+ * Contains \Drupal\clientside_validation\Plugin\CvValidator\Step.
  */
 
 namespace Drupal\clientside_validation\Plugin\CvValidator;
@@ -10,28 +10,33 @@ use Drupal\clientside_validation\CvValidatorBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Provides a 'min' validator.
+ * Provides a 'step' validator.
  *
  * @CvValidator(
- *   id = "min",
- *   name = @Translation("Minimum"),
+ *   id = "step",
+ *   name = @Translation("Step"),
  *   supports = {
- *     "attributes" = {"min"}
+ *     "attributes" = {"step"}
  *   }
  * )
  */
-class Min extends CvValidatorBase {
+class Step extends CvValidatorBase {
 
   /**
    * {@inheritdoc}
    */
   protected function getRules($element, FormStateInterface $form_state) {
-    // Drupal already adds the required attribute, so we don't need to set the
-    // required rule.
-    if (isset($element['#min'])) {
+    if ($element['#step'] !== 'any') {
+      if (isset($element['#min'])) {
+        return [
+          'messages' => [
+            'step' => t('The value in @title has to be greater than @min by steps of @step.', ['@title' => $element['#title'], '@step' => $element['#step'], '@min' => $element['#min']]),
+          ],
+        ];
+      }
       return [
         'messages' => [
-          'min' => t('The value in @title has to be greater than @min.', ['@title' => $element['#title'], '@min' => $element['#min']]),
+          'step' => t('The value in @title has to be divisible by @step.', ['@title' => $element['#title'], '@step' => $element['#step']]),
         ],
       ];
     }
