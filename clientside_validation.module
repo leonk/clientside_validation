@@ -17,11 +17,9 @@ function clientside_validation_form_alter(&$form, FormStateInterface &$form_stat
  * Form after build callback.
  */
 function clientside_validation_form_after_build(&$form, FormStateInterface &$form_state) {
-  $validation_added = clientside_validation_add_validation($form, $form_state, $form['#form_id']);
-  $validation_added = clientside_validation_form_after_build_recurse($form['#form_id'], $form, $form_state) || $validation_added;
-  if ($validation_added) {
-    //$form['#attached']['libraries_load'][] = array('clientside.validation');
-  }
+  clientside_validation_add_validation($form, $form_state, $form['#form_id']);
+  clientside_validation_form_after_build_recurse($form['#form_id'], $form, $form_state);
+
   return $form;
 }
 
@@ -29,11 +27,10 @@ function clientside_validation_form_after_build(&$form, FormStateInterface &$for
  * Recursive function to add clientside validation to a from.
  */
 function clientside_validation_form_after_build_recurse($form_id, &$form, &$form_state) {
-  $validation_added = FALSE;
   if (($children = Drupal\Core\Render\Element::children($form))) {
     foreach ($children as $item) {
       $element = &$form[$item];
-      $validation_added = clientside_validation_add_validation($element, $form_state, $form_id) || $validation_added;
+      clientside_validation_add_validation($element, $form_state, $form_id) || $validation_added;
       if (
         isset($element['#type'])
         && $element['#type'] == 'submit'
@@ -43,10 +40,9 @@ function clientside_validation_form_after_build_recurse($form_id, &$form, &$form
       ) {
         $element['#attributes']['class'][] = 'cancel';
       }
-      $validation_added = clientside_validation_form_after_build_recurse($form_id, $element, $form_state) || $validation_added;
+      clientside_validation_form_after_build_recurse($form_id, $element, $form_state);
     }
   }
-  return $validation_added;
 }
 
 /**
@@ -58,9 +54,7 @@ function clientside_validation_add_validation(&$element, FormStateInterface &$fo
     foreach ($validators as $validator) {
       $validator->addValidation($element, $form_state);
     }
-    return empty($validators);
   }
-  return FALSE;
 }
 
 /**
