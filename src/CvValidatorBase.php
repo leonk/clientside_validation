@@ -11,6 +11,7 @@ use Drupal\Component\Serialization\Json;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Component\Utility\NestedArray;
 
 abstract class CvValidatorBase extends PluginBase implements CvValidatorInterface {
   use StringTranslationTrait;
@@ -48,6 +49,12 @@ abstract class CvValidatorBase extends PluginBase implements CvValidatorInterfac
       foreach ($rules['messages'] as $rulename => $message) {
         $element['#attributes']['data-msg-' . Unicode::strtolower($rulename)] = $message;
       }
+    }
+    if (isset($rules['messages']) || isset($rules['rules'])) {
+      if (!isset($element['#attached'])) {
+        $element['#attached'] = [];
+      }
+      $element['#attached'] = NestedArray::mergeDeep($element['#attached'], $this->getPluginDefinition()['attached']);
     }
   }
 

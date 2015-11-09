@@ -49,4 +49,9 @@ class CvValidator extends Plugin {
     'attributes' => [],
   ];
 
+  /**
+   * An array of assets that can be #attached to a form element.
+   */
+  public $attachments = [];
+
 }

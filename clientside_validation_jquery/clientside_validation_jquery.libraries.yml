@@ -1,0 +1,10 @@
+jquery.validate:
+  js:
+    js/jquery.validate.js: {}
+    js/jquery.validate.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+jquery.validate.additional:
+  js:
+    js/additional-methods.js: {}
+    js/additional-methods.min.js: { minified: true }
