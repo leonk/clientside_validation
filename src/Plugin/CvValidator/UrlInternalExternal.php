@@ -45,7 +45,6 @@ class UrlInternalExternal extends CvValidatorBase {
     if (isset($element['#link_type'])) {
       if ($element['#link_type'] == \Drupal\link\LinkItemInterface::LINK_GENERIC) {
         $element['#attributes']['pattern'] = '\<front\>|\/.*|\?.*|#.*|[hH][tT][Tt][pP][sS]?://.+|.*\(\d+\)';
-        $element['#attributes']['data-xyzzy'] = $element['#link_type'];
       }
       else {
         $element['#attributes']['pattern'] = '\<front\>|\/|\/[^\/]+.*|\?.*|#.*|.*\(\d+\)';
