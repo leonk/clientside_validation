@@ -40,8 +40,17 @@ class UrlInternalExternal extends CvValidatorBase {
    */
   public function addValidation(array &$element, FormStateInterface $form_state) {
     parent::addValidation($element, $form_state);
-  // @todo detect type of url reference.
-    $element['#attributes']['pattern'] = '\<front\>|\/.*|\?.*|#.*|[hH][tT][Tt][pP][sS]?://.+|.*\(\d+\)';
+    // @todo detect type of url reference.
+    // needs patch from https://www.drupal.org/node/2613694
+    if (isset($element['#link_type'])) {
+      if ($element['#link_type'] == \Drupal\link\LinkItemInterface::LINK_GENERIC) {
+        $element['#attributes']['pattern'] = '\<front\>|\/.*|\?.*|#.*|[hH][tT][Tt][pP][sS]?://.+|.*\(\d+\)';
+        $element['#attributes']['data-xyzzy'] = $element['#link_type'];
+      }
+      else {
+        $element['#attributes']['pattern'] = '\<front\>|\/|\/[^\/]+.*|\?.*|#.*|.*\(\d+\)';
+      }
+    }
   }
 
 }
