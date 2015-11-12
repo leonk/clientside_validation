@@ -16,8 +16,8 @@ use Drupal\Core\Form\FormStateInterface;
  *   id = "url_internal_external",
  *   name = @Translation("Url - Internal/External"),
  *   supports = {
- *     "types" = {
- *       "entity_autocomplete"
+ *     "attributes" = {
+ *       "link_type"
  *     }
  *   }
  * )
@@ -40,15 +40,16 @@ class UrlInternalExternal extends CvValidatorBase {
    */
   public function addValidation(array &$element, FormStateInterface $form_state) {
     parent::addValidation($element, $form_state);
-    // @todo detect type of url reference.
     // needs patch from https://www.drupal.org/node/2613694
-    if (isset($element['#link_type'])) {
-      if ($element['#link_type'] == \Drupal\link\LinkItemInterface::LINK_GENERIC) {
+    switch($element['#link_type']) {
+      case \Drupal\link\LinkItemInterface::LINK_GENERIC:
         $element['#attributes']['pattern'] = '\<front\>|\/.*|\?.*|#.*|[hH][tT][Tt][pP][sS]?://.+|.*\(\d+\)';
-      }
-      else {
+        break;
+
+      case \Drupal\link\LinkItemInterface::LINK_INTERNAL:
         $element['#attributes']['pattern'] = '\<front\>|\/|\/[^\/]+.*|\?.*|#.*|.*\(\d+\)';
-      }
+        break;
+
     }
   }
 
