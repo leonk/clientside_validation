@@ -54,4 +54,21 @@ abstract class CvValidatorBase extends PluginBase implements CvValidatorInterfac
     }
   }
 
+  /**
+   * Get the value of an attribute of an element.
+   *
+   * @param array $element
+   *   The element to get the attribute from.
+   * @param string $attribute
+   *   The attribute of which to get the value.
+   *
+   * @return mixed
+   *   The attribute value.
+   */
+  protected function getAttributeValue(array $element, $attribute) {
+    return isset($element['#' . $attribute]) ?
+        $element['#' . $attribute]
+        : (isset($element['#attributes'][$attribute]) ? $element['#attributes'][$attribute] : NULL);
+  }
+
 }
