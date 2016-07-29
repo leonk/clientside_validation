@@ -50,7 +50,7 @@ abstract class CvValidatorBase extends PluginBase implements CvValidatorInterfac
       if (!isset($element['#attached'])) {
         $element['#attached'] = [];
       }
-      $element['#attached'] = NestedArray::mergeDeep($element['#attached'], $this->getPluginDefinition()['attached']);
+      $element['#attached'] = NestedArray::mergeDeep($element['#attached'], $this->getPluginDefinition()['attachments']);
     }
   }
 

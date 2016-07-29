@@ -7,9 +7,9 @@ jquery.validate.additional:
   js:
     js/lib/dist/additional-methods.js: {}
   dependencies:
-    - clientside_validation/jquery.validate
+    - clientside_validation_jquery/jquery.validate
 cv.jquery.validate:
   js:
     js/cv.jquery.validate.js: {}
   dependencies:
-    - clientside_validation/jquery.validate
+    - clientside_validation_jquery/jquery.validate
