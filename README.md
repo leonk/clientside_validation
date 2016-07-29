@@ -9,7 +9,7 @@ form elements. If an HTML5 attribute exists it is used as is.
 
 This modules adds the [jQuery Validation Plugin](http://jqueryvalidation.org/),
 to install (download the latest version)[http://jqueryvalidation.org/files/jquery-validation-1.14.0.zip]
-and extract the dist folder to the js/lib of this sub module.
+and extract the zip file to the js/lib of this sub module.
 
 If you don't download the library, it will be hot linked to the CDN version.
 
