@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\clientside_validation\Plugin\CvValidator\UrlInternalExternal.
- */
 
 namespace Drupal\clientside_validation\Plugin\CvValidator;
 

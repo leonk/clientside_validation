@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\clientside_validation\Plugin\CvValidator\Step.
- */
 
 namespace Drupal\clientside_validation\Plugin\CvValidator;
 

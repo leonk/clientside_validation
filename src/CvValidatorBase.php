@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Provides Drupal\clientside_validation\CvValidatorBase.
- */
 
 namespace Drupal\clientside_validation;
 

@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\clientside_validation_jquery\Plugin\CvValidator\Form.
- */
 
 namespace Drupal\clientside_validation_jquery\Plugin\CvValidator;
 

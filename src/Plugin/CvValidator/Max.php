@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\clientside_validation\Plugin\CvValidator\Max.
- */
 
 namespace Drupal\clientside_validation\Plugin\CvValidator;
 

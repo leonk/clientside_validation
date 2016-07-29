@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\clientside_validation\ValidatorManager.
- */
-
 namespace Drupal\clientside_validation;
 
 use Drupal\Core\Plugin\DefaultPluginManager;
