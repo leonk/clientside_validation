@@ -4,6 +4,7 @@ namespace Drupal\clientside_validation\Plugin\CvValidator;
 
 use Drupal\clientside_validation\CvValidatorBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\link\LinkItemInterface;
 
 /**
  * Provides a 'url' validator for internal url.
@@ -38,11 +39,11 @@ class UrlInternalExternal extends CvValidatorBase {
     parent::addValidation($element, $form_state);
     // needs patch from https://www.drupal.org/node/2613694
     switch($element['#link_type']) {
-      case \Drupal\link\LinkItemInterface::LINK_GENERIC:
+      case LinkItemInterface::LINK_GENERIC:
         $element['#attributes']['pattern'] = '\<front\>|\/.*|\?.*|#.*|[hH][tT][Tt][pP][sS]?://.+|.*\(\d+\)';
         break;
 
-      case \Drupal\link\LinkItemInterface::LINK_INTERNAL:
+      case LinkItemInterface::LINK_INTERNAL:
         $element['#attributes']['pattern'] = '\<front\>|\/|\/[^\/]+.*|\?.*|#.*|.*\(\d+\)';
         break;
 
