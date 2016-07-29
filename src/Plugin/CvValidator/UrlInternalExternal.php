@@ -26,7 +26,7 @@ class UrlInternalExternal extends CvValidatorBase {
   protected function getRules($element, FormStateInterface $form_state) {
     return [
       'messages' => [
-        'pattern' => $this->t('@title does not contain a valid url.', ['@title' => $element['#title']]),
+        'pattern' => $this->t('@title does not contain a valid url.', ['@title' => $this->getElementTitle($element)]),
       ],
     ];
   }

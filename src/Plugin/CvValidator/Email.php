@@ -26,7 +26,7 @@ class Email extends CvValidatorBase {
   protected function getRules($element, FormStateInterface $form_state) {
     return [
       'messages' => [
-        'email' => $this->t('@title does not contain a valid email.', ['@title' => $element['#title']]),
+        'email' => $this->t('@title does not contain a valid email.', ['@title' => $this->getElementTitle($element)]),
       ],
     ];
   }

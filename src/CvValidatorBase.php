@@ -71,4 +71,9 @@ abstract class CvValidatorBase extends PluginBase implements CvValidatorInterfac
         : (isset($element['#attributes'][$attribute]) ? $element['#attributes'][$attribute] : NULL);
   }
 
+  protected function getElementTitle(array $element, $default = 'This field') {
+    $title = $this->getAttributeValue($element, 'title');
+    return $title ? $title : t($default);
+  }
+
 }

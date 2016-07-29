@@ -26,7 +26,7 @@ class Url extends CvValidatorBase {
   protected function getRules($element, FormStateInterface $form_state) {
     return [
       'messages' => [
-        'url' => $this->t('@title does not contain a valid url.', ['@title' => $element['#title']]),
+        'url' => $this->t('@title does not contain a valid url.', ['@title' => $this->getElementTitle($element)]),
       ],
     ];
   }
