@@ -2,7 +2,7 @@
  * @file
  * Attaches behaviors for the Clientside Validation jQuery module.
  */
-(function ($, Drupal) {
+(function ($, Drupal, debounce, CKEDITOR) {
   /**
    * Attaches jQuery validate behavoir to forms.
    *
@@ -13,7 +13,42 @@
    */
   Drupal.behaviors.cvJqueryValidate = {
     attach: function (context) {
-      $(context).find('form').validate();
+      var ignore = ':hidden';
+      var not = [];
+      if (typeof CKEDITOR !== 'undefined') {
+        for (var instance in CKEDITOR.instances) {
+          if (CKEDITOR.instances.hasOwnProperty(instance)) {
+            not.push('#' + instance);
+          }
+        }
+        ignore += not.length ? ':not(' + not.join(', ') + ')' : '';
+      }
+      $(context).find('form').validate({
+        ignore: ignore
+      });
+
+      var updateText = function (instance) {
+        return debounce(function (e) {
+          instance.updateElement();
+          var event = $.extend(true, {}, e.data.$);
+          delete event.target;
+          delete event.explicitOriginalTarget;
+          delete event.originalTarget;
+          delete event.currentTarget;
+          $(instance.element.$).trigger(new $.Event(e.name, event));
+        }, 250);
+      };
+      CKEDITOR.on('instanceReady', function () {
+        for (var instance in CKEDITOR.instances) {
+          if (CKEDITOR.instances.hasOwnProperty(instance)) {
+            CKEDITOR.instances[instance].document.on("keyup", updateText(CKEDITOR.instances[instance]));
+            CKEDITOR.instances[instance].document.on("paste", updateText(CKEDITOR.instances[instance]));
+            CKEDITOR.instances[instance].document.on("keypress", updateText(CKEDITOR.instances[instance]));
+            CKEDITOR.instances[instance].document.on("blur", updateText(CKEDITOR.instances[instance]));
+            CKEDITOR.instances[instance].document.on("change", updateText(CKEDITOR.instances[instance]));
+          }
+        }
+      });
     }
   };
-})(jQuery, Drupal);
+})(jQuery, Drupal, Drupal.debounce, CKEDITOR);

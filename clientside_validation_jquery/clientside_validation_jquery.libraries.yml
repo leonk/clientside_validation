@@ -13,3 +13,4 @@ cv.jquery.validate:
     js/cv.jquery.validate.js: {}
   dependencies:
     - clientside_validation_jquery/jquery.validate
+    - core/drupal.debounce
