@@ -16,9 +16,9 @@ function clientside_validation_jquery_js_alter(&$javascript, \Drupal\Core\Asset\
         break;
       }
     }
-    $cv_jquery = $library_discovery->getLibraryByName('clientside_validation_jquery', 'cv.jquery.validate');
+    $cv_jquery = $library_discovery->getLibraryByName('clientside_validation_jquery', 'cv.jquery.ckeditor');
     foreach ($cv_jquery['js'] as $cv_jquery_file) {
-      if (strpos($cv_jquery_file['data'], 'cv.jquery.validate.js') !== FALSE) {
+      if (strpos($cv_jquery_file['data'], 'cv.jquery.ckeditor.js') !== FALSE) {
         break;
       }
     }
@@ -35,6 +35,9 @@ function clientside_validation_jquery_js_alter(&$javascript, \Drupal\Core\Asset\
 function clientside_validation_jquery_clientside_validation_validator_info_alter(&$validators) {
   foreach ($validators as &$validator) {
     $validator['attachments']['library'][] = 'clientside_validation_jquery/cv.jquery.validate';
+    if (\Drupal::moduleHandler()->moduleExists('ckeditor')) {
+      $validator['attachments']['library'][] = 'clientside_validation_jquery/cv.jquery.ckeditor';
+    }
   }
 }
 
